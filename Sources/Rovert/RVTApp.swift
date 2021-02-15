@@ -17,9 +17,7 @@ public struct RVTApp<TRootVC: RVTViewControllerProtocol> {
     // Create navigationcontroller here as root vc then inject the instantiated rootstoryboard vc
     public func Start(navigationController: UINavigationController, rootStoryboard: String) {
         let builder = RVTViewControllerBuilder<TRootVC>()
-        let vc = builder.instantiate(with: rootStoryboard) { vc in
-            vc.viewModel = .init()
-        }
+        let vc = builder.instantiate(with: rootStoryboard)
         navigationController.pushViewController(vc, animated: true)
     }
 }

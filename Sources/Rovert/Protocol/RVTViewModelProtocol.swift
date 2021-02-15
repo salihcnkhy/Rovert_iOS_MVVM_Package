@@ -8,5 +8,7 @@
 public protocol RVTViewModelProtocol {
     associatedtype UseCaseType: RVTUseCaseProtocol
     var useCase: UseCaseType { get }
-    init()
+    var viewControllerShared: RVTViewControllerShared { get set }
+    init(with viewControllerShared: RVTViewControllerShared)
+
 }

@@ -8,7 +8,11 @@ import UIKit
 
 public protocol RVTViewControllerProtocol: UIViewController {
     associatedtype ViewModelType: RVTViewModelProtocol
+   
     var viewModel: ViewModelType! { get set }
+    var controllerShared: RVTViewControllerShared! { get set }
+    
+    func setup(with viewModel: ViewModelType?, className: String)
     func bindViewModel()
     func setupViews()
     func go<TViewController: RVTViewControllerProtocol>(to: TViewController.Type, storyboard: String, afterCreation: ((TViewController) -> Void)?)

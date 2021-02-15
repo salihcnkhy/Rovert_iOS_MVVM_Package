@@ -8,5 +8,6 @@
 public protocol RVTRepositoryProtocol {
     // TODO: Is this can help to less loc
     var dataSources: RVTDataSourceDictionary<RVTDataSourceHashableProtocol> { get set }
-    init()
+    var viewControllerShared: RVTViewControllerShared { get set }
+    init(with viewControllerShared: RVTViewControllerShared)
 }

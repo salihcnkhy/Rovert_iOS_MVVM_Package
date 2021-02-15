@@ -6,9 +6,11 @@
 //
 
 open class RVTRepository: RVTRepositoryProtocol {
+    public var viewControllerShared: RVTViewControllerShared
     public var dataSources: RVTDataSourceDictionary<RVTDataSourceHashableProtocol>
     
-    public required init() {
+    public required init(with viewControllerShared: RVTViewControllerShared) {
         dataSources = .init()
+        self.viewControllerShared = viewControllerShared
     }
 }
