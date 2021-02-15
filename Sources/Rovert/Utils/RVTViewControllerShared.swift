@@ -6,6 +6,6 @@
 //
 
 public struct RVTViewControllerShared {
-    let className: String
-    var state: RVTBindable<RVTState>
+   public let className: String
+   public var state: RVTBindable<RVTState>
 }
