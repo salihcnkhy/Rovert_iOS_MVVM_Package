@@ -43,6 +43,7 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
     private func setupLoadingView() {
         loadingView = .init()
         loadingView.setup(className: className)
+        loadingView.frame = UIScreen.main.bounds
         view.addSubview(loadingView)
     }
     
