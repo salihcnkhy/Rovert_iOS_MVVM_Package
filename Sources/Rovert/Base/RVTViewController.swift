@@ -19,6 +19,7 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
         self.className = className
         controllerShared = .init(state: .init(with: .empty))
         RVTSharedManager.shared.viewControllerShareds[className] = controllerShared
+        RVTSharedManager.shared.viewControllerShareds[className]?.state = controllerShared.state
         setupViews()
         self.viewModel = viewModel ?? .init(with: className)
     }
