@@ -6,5 +6,9 @@
 //
 
 public final class RVTViewControllerShared {
+    public init(state: RVTBindable<RVTState>) {
+        self.state = state
+    }
+    
    public var state: RVTBindable<RVTState>
 }

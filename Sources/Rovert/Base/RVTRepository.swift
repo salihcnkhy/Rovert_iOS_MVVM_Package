@@ -23,7 +23,7 @@ open class RVTRepository: RVTRepositoryProtocol {
     }
     
     public func executeSource<Value>(key: Value.Type) where Value: RVTDataSourceProtocol {
-        guard var source = getSource(key: key) else { return }
+        guard let source = getSource(key: key) else { return }
         viewControllerShared?.state.value = .loading
         source.response.bind { [weak self] response in
             guard let self = self else { return }

@@ -23,7 +23,7 @@ public final class RVTBindable<T> {
 
     private var bindeds : [Binder] = []
     
-    public mutating func bind(binder : @escaping Binder) {
+    public func bind(binder : @escaping Binder) {
         bindeds.append(binder)
     }
     
