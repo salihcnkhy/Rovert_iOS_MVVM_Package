@@ -28,7 +28,7 @@ open class RVTRepository: RVTRepositoryProtocol {
         source.response.bind { [weak self] response in
             guard let self = self else { return }
             self.responseData.value = response
-            self.viewControllerShared.state.value = RVTState.none
+            self.viewControllerShared.state.value = .empty
         }
         source.execute()
     }

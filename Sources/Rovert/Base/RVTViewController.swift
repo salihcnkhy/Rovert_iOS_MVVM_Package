@@ -11,11 +11,12 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
     
     public var controllerShared: RVTViewControllerShared!
     public var viewModel: TViewModel!
+    public var loadingView: RVTLoadingView!
     // TODO: Why should have to store that id
     
     public func setup(with viewModel: TViewModel?, className: String) {
-        controllerShared = .init(className: className, state: .init(with: RVTState.none))
-        bindLoading()
+        controllerShared = .init(className: className, state: .init(with: .empty))
+        setupViews()
         self.viewModel = viewModel ?? .init(with: controllerShared)
     }
     
@@ -40,13 +41,9 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
     // TODO: If those open funcs will be in all vc then those should be in protocol
     open func bindViewModel() { }
     
-    open func setupViews() { }
-    
-    private func bindLoading() {
-        controllerShared.state.bind { [weak self] state in
-            guard let _ = self else { return }
-            print("Şu anda state: \(String(describing: state))")
-        }
+    open func setupViews() {
+        loadingView = .init()
+        loadingView.setup(viewControllerShared: controllerShared)
     }
     
     // TODO: Is overrideable deinit possible??

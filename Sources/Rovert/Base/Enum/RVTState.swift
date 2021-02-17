@@ -6,7 +6,7 @@
 //
 
 public enum RVTState {
-    case none
+    case empty
     case loading
     case hasError(RVTErrorTypeProtocol)
 }
