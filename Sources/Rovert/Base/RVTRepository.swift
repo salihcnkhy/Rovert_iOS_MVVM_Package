@@ -14,6 +14,8 @@ open class RVTRepository: RVTRepositoryProtocol {
         self.viewControllerShared = viewControllerShared
     }
     
+    open func setup() {}
+    
     public func addSource<Value>(key: Value.Type, request: Value.RequestType? = nil) where Value: RVTDataSourceProtocol {
         let source = Value.init(request: request)
         dataSources[key] = source
