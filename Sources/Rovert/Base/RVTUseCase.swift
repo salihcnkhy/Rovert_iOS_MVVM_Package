@@ -12,6 +12,5 @@ open class RVTUseCase<TRepository>: RVTUseCaseProtocol where TRepository: RVTRep
     public required init(with viewControllerShared: RVTViewControllerShared) {
         self.viewControllerShared = viewControllerShared
         repository = .init(with: viewControllerShared)
-        repository.setup()
     }
 }

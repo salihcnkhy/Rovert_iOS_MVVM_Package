@@ -21,4 +21,6 @@ open class RVTDataSource<TRequest, TResponse>: RVTDataSourceProtocol where TResp
         self.request = request
         hashValue = NSStringFromClass(Self.self)
     }
+    
+    open func execute() { }
 }
