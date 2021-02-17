@@ -19,8 +19,7 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
         self.className = className
         controllerShared = .init(state: .init(with: .empty))
         RVTSharedManager.shared.viewControllerShareds[className] = controllerShared
-        RVTSharedManager.shared.viewControllerShareds[className]?.state = controllerShared.state
-        setupViews()
+        setupLoadingView()
         self.viewModel = viewModel ?? .init(with: className)
     }
     
@@ -42,13 +41,16 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
         nc.pushViewController(vc, animated: true)
     }
     
+    private func setupLoadingView() {
+        loadingView = .init()
+        loadingView.setup(className: className)
+        view.addSubview(loadingView)
+    }
+    
     // TODO: If those open funcs will be in all vc then those should be in protocol
     open func bindViewModel() { }
     
-    open func setupViews() {
-        loadingView = .init()
-        loadingView.setup(className: className)
-    }
+    open func setupViews() { }
     
     // TODO: Is overrideable deinit possible??
     deinit {
