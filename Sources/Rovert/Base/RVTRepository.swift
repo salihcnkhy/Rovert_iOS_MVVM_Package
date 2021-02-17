@@ -18,8 +18,8 @@ open class RVTRepository: RVTRepositoryProtocol {
 
     public func addSource<Value>(key: Value.Type, request: Value.RequestType? = nil, binder: @escaping RVTBindable<Value.ResponseType>.Binder) where Value: RVTDataSourceProtocol {
         var source = Value.init(request: request)
-        dataSources[key] = source
         source.response.bind(binder: binder)
+        dataSources[key] = source
     }
     
     public func getSource<Value>(key: Value.Type) -> Value? where Value: RVTDataSourceProtocol {
