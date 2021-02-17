@@ -17,10 +17,9 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
     
     public func setup(with viewModel: TViewModel?, className: String) {
         self.className = className
-        controllerShared = .init(state: .init(with: .empty))
-        RVTSharedManager.shared.viewControllerShareds[className] = controllerShared
-        setupLoadingView()
+        controllerShared = .init(className: className, state: .init(with: .empty))
         self.viewModel = viewModel ?? .init(with: className)
+        setupLoadingView()
     }
     
     // TODO: Is there can be different way to present a vc??

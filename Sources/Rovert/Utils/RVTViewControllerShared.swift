@@ -6,9 +6,10 @@
 //
 
 public final class RVTViewControllerShared {
-    public init(state: RVTBindable<RVTState>) {
-        self.state = state
-    }
+    public var state: RVTBindable<RVTState>
     
-   public var state: RVTBindable<RVTState>
+    public init(className: String, state: RVTBindable<RVTState>) {
+        self.state = state
+        RVTSharedManager.shared.viewControllerShareds[className] = self
+    }
 }
