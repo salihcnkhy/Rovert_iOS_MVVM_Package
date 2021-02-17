@@ -8,6 +8,7 @@
 open class RVTRepository: RVTRepositoryProtocol {
     public var viewControllerShared: RVTViewControllerShared
     public var dataSources: RVTDataSourceDictionary<RVTDataSourceHashableProtocol>
+    public var responseData: RVTBindable<RVTResponseProtocol> = .init()
     
     public required init(with viewControllerShared: RVTViewControllerShared) {
         dataSources = .init()
@@ -21,13 +22,13 @@ open class RVTRepository: RVTRepositoryProtocol {
         dataSources[key] = source
     }
     
-    public func executeSource<Value>(key: Value.Type, binder: @escaping RVTBindable<Value.ResponseType>.Binder) where Value: RVTDataSourceProtocol {
+    public func executeSource<Value>(key: Value.Type) where Value: RVTDataSourceProtocol {
         guard var source = getSource(key: key) else { return }
         viewControllerShared.state.value = .loading
         source.response.bind { [weak self] response in
             guard let self = self else { return }
+            self.responseData.value = response
             self.viewControllerShared.state.value = RVTState.none
-            binder(response)
         }
         source.execute()
     }
