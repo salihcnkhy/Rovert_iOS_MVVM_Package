@@ -10,14 +10,27 @@ import UIKit
 
 public struct RVTApp<TRootVC: RVTViewControllerProtocol> {
     
-    // TODO: maybe take window here???
-    public init() { }
+    var window: UIWindow
     
-    // TODO: Don't take navigationcontroller instead of window.
-    // Create navigationcontroller here as root vc then inject the instantiated rootstoryboard vc
-    public func Start(navigationController: UINavigationController, rootStoryboard: String) {
+    // TODO: maybe take window here???
+    @available(iOS 13.0, *)
+    public init(window: UIWindow, scene: UIWindowScene? = nil) {
+        self.window = window
+        self.window.windowScene = scene
+    }
+    
+    public init(window: UIWindow) {
+        self.window = window
+    }
+    
+    public func Start(rootStoryboard: String) {
+        let navigationController = UINavigationController()
+        self.window.rootViewController = navigationController
+        self.window.makeKeyAndVisible()
+
         let builder = RVTViewControllerBuilder<TRootVC>()
         let vc = builder.instantiate(with: rootStoryboard)
         navigationController.pushViewController(vc, animated: true)
     }
+
 }
