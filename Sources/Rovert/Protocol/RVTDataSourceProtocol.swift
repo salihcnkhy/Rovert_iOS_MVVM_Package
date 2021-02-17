@@ -14,6 +14,6 @@ public protocol RVTDataSourceProtocol: RVTDataSourceHashableProtocol {
     associatedtype RequestType: RVTRequestProtocol
     associatedtype ResponseType: RVTResponseProtocol
     var request: RequestType? { get set }
-    var response: ResponseType? { get set }
+    var response: RVTBindable<ResponseType> { get set }
     init(request: RequestType?)
 }

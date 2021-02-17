@@ -10,7 +10,7 @@ import Foundation
 open class RVTDataSource<TRequest, TResponse>: RVTDataSourceProtocol where TResponse: RVTResponseProtocol, TRequest: RVTRequestProtocol {
 
     public var request: TRequest?
-    public var response: TResponse?
+    public var response: RVTBindable<TResponse> = .init()
 
     public var hashValue: String
     public func isEqualTo(another: RVTDataSourceHashableProtocol) -> Bool {

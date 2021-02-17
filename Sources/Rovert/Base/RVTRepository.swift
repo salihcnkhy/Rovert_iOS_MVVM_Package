@@ -13,4 +13,16 @@ open class RVTRepository: RVTRepositoryProtocol {
         dataSources = .init()
         self.viewControllerShared = viewControllerShared
     }
+    
+    open func setup() { }
+
+    public func addSource<Value>(key: Value.Type, request: Value.RequestType? = nil, binder: @escaping RVTBindable<Value.ResponseType>.Binder) where Value: RVTDataSourceProtocol {
+        var source = Value.init(request: request)
+        dataSources[key] = source
+        source.response.bind(binder: binder)
+    }
+    
+    public func getSource<Value>(key: Value.Type) -> Value? where Value: RVTDataSourceProtocol {
+        dataSources[key]
+    }
 }
