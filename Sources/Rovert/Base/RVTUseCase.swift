@@ -8,7 +8,8 @@
 open class RVTUseCase<TRepository>: RVTUseCaseProtocol where TRepository: RVTRepositoryProtocol {
     public var viewControllerShared: RVTViewControllerShared
     public var repository: TRepository
-
+    public var responseModel: RVTBindable<RVTModelProtocol> = .init()
+    
     public required init(with viewControllerShared: RVTViewControllerShared) {
         self.viewControllerShared = viewControllerShared
         repository = .init(with: viewControllerShared)

@@ -8,6 +8,7 @@
 public protocol RVTUseCaseProtocol {
     associatedtype RepositoryType: RVTRepositoryProtocol
     var repository: RepositoryType { get set }
+    var responseModel: RVTBindable<RVTModelProtocol> { get set }
     var viewControllerShared: RVTViewControllerShared { get set }
     init(with viewControllerShared: RVTViewControllerShared)
 
