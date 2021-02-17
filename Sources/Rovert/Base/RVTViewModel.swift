@@ -9,12 +9,12 @@ import Foundation
 
 // TODO: Do i really need to UseCase, I might have direct access to repository from here
 open class RVTViewModel<TUseCase>: RVTViewModelProtocol where TUseCase: RVTUseCaseProtocol {
-    public var viewControllerShared: RVTViewControllerShared
+    public var viewControllerShared: RVTViewControllerShared?
     public let useCase: TUseCase
 
-    public required init(with viewControllerShared: RVTViewControllerShared) {
-        self.viewControllerShared = viewControllerShared
-        useCase = .init(with: viewControllerShared)
+    public required init(with className: String) {
+        self.viewControllerShared = RVTSharedManager.shared.viewControllerShareds[className]
+        useCase = .init(with: className)
     }
 
     deinit {

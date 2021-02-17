@@ -11,7 +11,7 @@ public protocol RVTViewControllerProtocol: UIViewController {
    
     var viewModel: ViewModelType! { get set }
     var controllerShared: RVTViewControllerShared! { get set }
-    
+    var className: String { get }
     func setup(with viewModel: ViewModelType?, className: String)
     func bindViewModel()
     func setupViews()

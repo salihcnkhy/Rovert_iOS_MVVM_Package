@@ -6,13 +6,13 @@
 //
 
 open class RVTRepository: RVTRepositoryProtocol {
-    public var viewControllerShared: RVTViewControllerShared
+    public var viewControllerShared: RVTViewControllerShared?
     public var dataSources: RVTDataSourceDictionary<RVTDataSourceHashableProtocol>
     public var responseData: RVTBindable<RVTResponseProtocol> = .init()
     
-    public required init(with viewControllerShared: RVTViewControllerShared) {
+    public required init(with className: String) {
         dataSources = .init()
-        self.viewControllerShared = viewControllerShared
+        self.viewControllerShared = RVTSharedManager.shared.viewControllerShareds[className]
     }
     
     open func setup() {}
@@ -24,11 +24,11 @@ open class RVTRepository: RVTRepositoryProtocol {
     
     public func executeSource<Value>(key: Value.Type) where Value: RVTDataSourceProtocol {
         guard var source = getSource(key: key) else { return }
-        viewControllerShared.state.value = .loading
+        viewControllerShared?.state.value = .loading
         source.response.bind { [weak self] response in
             guard let self = self else { return }
             self.responseData.value = response
-            self.viewControllerShared.state.value = .empty
+            self.viewControllerShared?.state.value = .empty
         }
         source.execute()
     }

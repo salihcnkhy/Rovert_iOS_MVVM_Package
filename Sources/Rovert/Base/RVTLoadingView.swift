@@ -11,9 +11,9 @@ open class RVTLoadingView: UIView {
     var indicator = RVTIndicator()
     var viewControllerShared: RVTViewControllerShared?
    
-    public func setup(viewControllerShared: RVTViewControllerShared) {
+    public func setup(className: String) {
        
-        self.viewControllerShared = viewControllerShared
+        self.viewControllerShared = RVTSharedManager.shared.viewControllerShareds[className]
         bindParentViewController()
        
         backgroundColor = UIColor(white: 0, alpha: 0.7)

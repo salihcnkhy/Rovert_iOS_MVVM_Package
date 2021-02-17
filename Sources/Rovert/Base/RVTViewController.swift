@@ -9,15 +9,18 @@ import UIKit
 
 open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerProtocol where TViewModel: RVTViewModelProtocol {
     
+    public var className: String = ""
     public var controllerShared: RVTViewControllerShared!
     public var viewModel: TViewModel!
     public var loadingView: RVTLoadingView!
     // TODO: Why should have to store that id
     
     public func setup(with viewModel: TViewModel?, className: String) {
-        controllerShared = .init(className: className, state: .init(with: .empty))
+        self.className = className
+        controllerShared = .init(state: .init(with: .empty))
+        RVTSharedManager.shared.viewControllerShareds[className] = controllerShared
         setupViews()
-        self.viewModel = viewModel ?? .init(with: controllerShared)
+        self.viewModel = viewModel ?? .init(with: className)
     }
     
     // TODO: Is there can be different way to present a vc??
@@ -43,7 +46,7 @@ open class RVTViewController<TViewModel>: UIViewController, RVTViewControllerPro
     
     open func setupViews() {
         loadingView = .init()
-        loadingView.setup(viewControllerShared: controllerShared)
+        loadingView.setup(className: className)
     }
     
     // TODO: Is overrideable deinit possible??
