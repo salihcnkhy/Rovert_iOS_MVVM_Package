@@ -27,6 +27,7 @@ open class RVTRepository: RVTRepositoryProtocol {
             self.viewControllerShared.state.value = RVTState.none
             binder(response)
         }
+        source.execute()
     }
     
     public func getSource<Value>(key: Value.Type) -> Value? where Value: RVTDataSourceProtocol {
