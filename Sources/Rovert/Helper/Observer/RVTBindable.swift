@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RVTBindable<T> {
+public final class RVTBindable<T> {
     
     public typealias Binder = ((T?) -> ())
     
